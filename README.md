@@ -1,15 +1,94 @@
-install Lighthouse in your project.
-#Install via composer
+```markdown
+# Laravel 11 GraphQL Application
+
+A Laravel 11 project with default user GraphQL queries using **Lighthouse** for GraphQL support. This setup allows you to create, query, update, and delete users via GraphQL endpoints.
+
+---
+
+## Installation
+
+Follow these steps to set up the project:
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
+```
+
+### 2. Install Backend Dependencies
+```bash
+composer install
+```
+
+### 3. Install Frontend Dependencies (Optional)
+```bash
+npm install
+npm run dev
+```
+
+### 4. Set Up Environment
+- Copy `.env.example` to `.env`:
+  ```bash
+  cp .env.example .env
+  ```
+- Update `.env` with your database and environment configurations.
+
+### 5. Generate Application Key
+```bash
+php artisan key:generate
+```
+
+### 6. Run Migrations
+```bash
+php artisan migrate
+```
+
+### 7. Seed the Database (Optional)
+```bash
+php artisan db:seed
+```
+
+---
+
+## Running the Application
+
+### 1. Set the API Base URL
+Update the `APP_URL` in your `.env` file:
+```env
+APP_URL=http://localhost:8000
+```
+
+### 2. Start the Application
+```bash
+php artisan serve
+```
+
+### 3. Access the API
+Visit `http://localhost:8000/api` for your API routes.
+
+---
+
+## GraphQL Setup
+
+### 1. Install Lighthouse
+Lighthouse provides GraphQL support for Laravel:
+```bash
 composer require nuwave/lighthouse
+```
 
-
-Install GraphQL DevTools
-To make use of the amazing tooling around GraphQL, install GraphiQL
+### 2. Install GraphQL DevTools
+To test GraphQL queries, install **GraphiQL**:
+```bash
 composer require mll-lab/laravel-graphiql
-- visit http://127.0.0.1:8000/graphiql for testing, this app is similar to Postman
+```
+- Visit `http://127.0.0.1:8000/graphiql` to test your queries, similar to **Postman** for REST APIs.
 
+---
 
-Querying fields in GraphQL, type:
+## GraphQL Examples
+
+### Query All Users
+```graphql
 {
     users {
         id
@@ -17,36 +96,40 @@ Querying fields in GraphQL, type:
         email
     }
 }
+```
 
-Querying with arguments, type:
+### Query User by ID
+```graphql
 {
-  user(id: 2){
+  user(id: 2) {
     id
     name
     email
   }
 }
+```
 
-Querying with aliases, type:
+### Query with Aliases
+```graphql
 {
-  userOne: user(id: 2){
+  userOne: user(id: 2) {
     id
     name
     email
   }
-
-  userTwo: user(id: 2){
+  userTwo: user(id: 3) {
     id
     name
     email
   }
 }
+```
 
-Using the Lighthouse paginate directive, type
+### Paginate Users
+```graphql
 {
-    users (first: 2, page: 1) {
-        data 
-        {
+    users(first: 2, page: 1) {
+        data {
             id
             name
             email
@@ -60,37 +143,48 @@ Using the Lighthouse paginate directive, type
         }
     }
 }
+```
 
-Creating a user:
+---
+
+## GraphQL Mutations
+
+### Create a User
+```graphql
 mutation {
     createUser(
         name: "Allan",
         email: "allan@domaintest.com",
         password: "passwordpassword"
-    )
-    {
+    ) {
         id
         name
     }
 }
+```
 
-Updating a user:
+### Update a User
+```graphql
 mutation {
     updateUser(
-        name: "Ronald",
-        id: 12
-    )
-    {
+        id: 12,
+        name: "Ronald"
+    ) {
         id
         name
         email
     }
 }
+```
 
-Deleting a user:
+### Delete a User
+```graphql
 mutation {
-    deleteUser(id: 12)
-    {
+    deleteUser(id: 12) {
         id        
     }
 }
+```
+
+---
+
