@@ -61,3 +61,36 @@ Using the Lighthouse paginate directive, type
     }
 }
 
+Creating a user:
+mutation {
+    createUser(
+        name: "Allan",
+        email: "allan@domaintest.com",
+        password: "passwordpassword"
+    )
+    {
+        id
+        name
+    }
+}
+
+Updating a user:
+mutation {
+    updateUser(
+        name: "Ronald",
+        id: 12
+    )
+    {
+        id
+        name
+        email
+    }
+}
+
+Deleting a user:
+mutation {
+    deleteUser(id: 12)
+    {
+        id        
+    }
+}
