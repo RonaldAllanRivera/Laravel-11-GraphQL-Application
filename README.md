@@ -1,4 +1,3 @@
-```markdown
 # Laravel 11 GraphQL Application
 
 A Laravel 11 project with default user GraphQL queries using **Lighthouse** for GraphQL support. This setup allows you to create, query, update, and delete users via GraphQL endpoints.
@@ -13,7 +12,7 @@ Follow these steps to set up the project:
 ```bash
 git clone https://github.com/your-username/your-repository.git
 cd your-repository
-```
+
 
 ### 2. Install Backend Dependencies
 ```bash
