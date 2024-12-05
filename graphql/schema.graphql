@@ -1,0 +1,18 @@
+# Output "Hello World" 
+#  type Query {
+#   greetings: String!
+# }
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Query {
+  # no paginate
+  # users: [User!] @all 
+  # with paginate
+  users: [User!] @paginate
+  user(id: ID! @eq):User @find
+}
